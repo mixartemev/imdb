@@ -3,7 +3,7 @@
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class IndexTest extends TestCase
 {
     /**
      * A basic test example.
@@ -14,8 +14,10 @@ class ExampleTest extends TestCase
     {
         $this->get('/');
 
-        $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+        $this->assertIsArray(
+            \PHPUnit\Util\Json::canonicalize(
+                $this->response->getContent()
+            )
         );
     }
 }
